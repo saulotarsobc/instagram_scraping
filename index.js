@@ -7,7 +7,12 @@ app.use(bodyParser({ extended: false }));
 app.get('/', (req, res) => {
     let { profile } = req.body;
     (async () => {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+        });
         const page = await browser.newPage();
         await page.goto(`https://www.instagram.com/${profile}/`, {
             waitUntil: 'networkidle2',
