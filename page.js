@@ -1,13 +1,9 @@
-const nodeList = document.querySelectorAll('article img');
-const imgArray = [...nodeList];
+const imgArray = [...document.querySelectorAll('article img')];
 
-// imgArray.forEach(element => {
-//     console.log(element);
-// });
+imgArray.forEach(element => {
+    console.log(element);
+});
 
-const imgList = imgArray.map(({src, alt})=>({
-    src,
-    alt
-}));
+const imgList = imgArray.map(({ src, alt }) => ({ src, alt }));
 
 console.log(imgList);

@@ -1,33 +1,33 @@
 const puppeteer = require('puppeteer');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+app.use(bodyParser({ extended: false }));
 
-(async () => {
-    const browser = await puppeteer.launch();
+app.get('/', (req, res) => {
+    let { profile } = req.body;
+    (async () => {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto(`https://www.instagram.com/${profile}/`, {
+            waitUntil: 'networkidle2',
+        });
+        const imgList = await page.evaluate(() => {
+            const imgArray = [...document.querySelectorAll('article img')];
+            const imgList = imgArray.map(({ src, alt }) => ({ src, alt }));
+            console.log(imgList);
+            return imgList;
+        });
+        res.status(200);
+        res.json({
+            msg: 'ok',
+            imgList
+        });
+        await browser.close();
+    })();
+});
 
-    const page = await browser.newPage();
-    
-    await page.goto('https://www.instagram.com/entrefiosstm/', {
-        waitUntil: 'networkidle2',
-    });
-
-    const imgList = await page.evaluate(() => {
-        const imgArray = [...document.querySelectorAll('article img')];
-        const imgList = imgArray.map(({ src, alt }) => ({ src, alt }));
-        return imgList;
-    });
-
-    await browser.close();
-
-    console.log(imgList);
-})();
+app.listen(3000, console.log('servidor preparado'));
 
 
-// (async () => {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-//     await page.goto('https://news.ycombinator.com', {
-//         waitUntil: 'networkidle2',
-//     });
-//     await page.pdf({ path: 'hn.pdf', format: 'a4' });
 
-//     await browser.close();
-// })();
