@@ -1,0 +1,25 @@
+{
+  "name": "instagram_scraping",
+  "version": "1.0.0",
+  "description": "scraping na pagina de um perfil do instagram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saulotarsobc/instagram_scraping.git"
+  },
+  "keywords": [
+    "instagram",
+    "scraping",
+    "nodejs",
+    "node"
+  ],
+  "author": "Saulo Costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saulotarsobc/instagram_scraping/issues"
+  },
+  "homepage": "https://github.com/saulotarsobc/instagram_scraping#readme"
+}
