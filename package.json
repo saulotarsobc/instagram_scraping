@@ -4,7 +4,7 @@
   "description": "scraping na pagina de um perfil do instagram",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/saulotarsobc/instagram_scraping/issues"
   },
-  "homepage": "https://github.com/saulotarsobc/instagram_scraping#readme"
+  "homepage": "https://github.com/saulotarsobc/instagram_scraping#readme",
+  "dependencies": {
+    "puppeteer": "^18.0.5"
+  }
 }
