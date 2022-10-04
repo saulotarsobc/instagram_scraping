@@ -1,30 +1,23 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-    const browser = await puppeteer.launch({
-        headless: false
-    });
+    const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
+    
     await page.goto('https://www.instagram.com/entrefiosstm/', {
         waitUntil: 'networkidle2',
     });
 
     const imgList = await page.evaluate(() => {
-        const nodeList = document.querySelectorAll('article img');
-        const imgArray = [...nodeList];
-        // imgArray.forEach(element => {
-        //     console.log(element);
-        // });
-        const imgList = imgArray.map(({ src }) => ({ src }));
-        console.log(imgList);
+        const imgArray = [...document.querySelectorAll('article img')];
+        const imgList = imgArray.map(({ src, alt }) => ({ src, alt }));
         return imgList;
     });
 
+    await browser.close();
+
     console.log(imgList);
-
-    // await browser.close();
-
 })();
 
 
